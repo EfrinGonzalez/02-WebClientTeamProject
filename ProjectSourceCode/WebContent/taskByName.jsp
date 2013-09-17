@@ -26,23 +26,22 @@
         <textarea id="txtAreaTaskXml" cols="100" rows="30" >
         
         <%
-      
-      String nameParam=request.getParameter("name");
-            try {
-                InputStream xmlStream = getServletContext().getResourceAsStream("/WEB-INF/task-manager-xml.xml");
-                
-                //This line takes: Tasks by the owner: Get the tasks owned by a given user name.
-               		 //and passing the next: http://localhost:8080/TaskManagerWeb-01/GetAllTasks.jsp?name=something
-               		 String query = "//task[@name='"+nameParam+"']";
-											
-                
-                Document tasksDoc = TasksJDOMParser.GetTasksByQuery(xmlStream, query);
-                new XMLOutputter().output(tasksDoc, out);
-                
-            } catch (JDOMException ex) {
-                Logger.getLogger(GetAllTasksServlet.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        %>
+                	String nameParam=request.getParameter("name");
+                                            try {
+                                                InputStream xmlStream = getServletContext().getResourceAsStream("/WEB-INF/task-manager-xml.xml");
+                                                
+                                                //This line takes: Tasks by the owner: Get the tasks owned by a given user name.
+                                               		 //and passing the next: http://localhost:8080/TaskManagerWeb-01/GetAllTasks.jsp?name=something
+                                               		 String query = "//task[@name='"+nameParam+"']";
+                                									
+                                                
+                                                Document tasksDoc = TasksJDOMParser.GetTasksByQuery(xmlStream, query);
+                                                new XMLOutputter().output(tasksDoc, out);
+                                                
+                                            } catch (JDOMException ex) {
+                                                Logger.getLogger(GetAllTasksServlet.class.getName()).log(Level.SEVERE, null, ex);
+                                            }
+                %>
 		</textarea>
 		
 		
