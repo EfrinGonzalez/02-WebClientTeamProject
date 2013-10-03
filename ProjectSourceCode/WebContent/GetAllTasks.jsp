@@ -29,25 +29,12 @@
         <%
         TcpClient tcpClient = new TcpClient();
         //This line takes the all xml file
-            String query = "//task";
-        
-          String tasksDoc= tcpClient.openConnection(query);
+          String query = "//task";        
+          String tasksDoc= tcpClient.openConnection(query);          
           System.out.println("message from server "+tasksDoc);
-          
-        
-            /*
-               try {
-                InputStream xmlStream = getServletContext().getResourceAsStream("/WEB-INF/task-manager-xml.xml");
-                //This line takes the all xml file
-                    String query = "//task";
-               
-                Document tasksDoc = TasksJDOMParser.GetTasksByQuery(xmlStream, query);
-                new XMLOutputter().output(tasksDoc, out);
-                
-            } catch (JDOMException ex) {
-                Logger.getLogger(GetAllTasksServlet.class.getName()).log(Level.SEVERE, null, ex);
-            }*/
+          out.append(tasksDoc );
         %>
+       
 		</textarea>
 		
 		

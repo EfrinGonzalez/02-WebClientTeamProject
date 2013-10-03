@@ -27,6 +27,7 @@ public class TcpClient {
             
             // It is the same port where server will be listening.
             int serverPort = 7896;
+            //int serverPort = 4444;
             
             String message = msg;
             // Open a socket for communication.
