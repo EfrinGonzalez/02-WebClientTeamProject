@@ -1,8 +1,8 @@
 
 <%-- 
-    Document   : GetAllTasks
-    Created on : Aug 31, 2012, 11:17:34 AM
-    Author     : rao
+    Document   : Delete Task
+    Created on : Okt 08, 2013, 14:21:00
+    Author     : Rasmus Kreiner
 --%>
 
 <%@page import="itu.dk.smds.e2013.common.TcpClient"%>
@@ -20,19 +20,18 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Get All Tasks</title>
+        <title>Delete Tasks</title>
     </head>
     <body>
-        <h1>Available tasks:</h1>        
+        <h1>Deleted task:</h1>        
         <textarea id="txtAreaTaskXml" cols="100" rows="30" >
         
         <%
-        TcpClient tcpClient = new TcpClient();
-        //This line takes the all xml file
-          String id = "";        
-          String tasksDoc= tcpClient.getTask(id);          
-          System.out.println("message from server "+tasksDoc);
-          out.append(tasksDoc);
+        	TcpClient tcpClient = new TcpClient(); //Creates a new client
+          	String id = request.getParameter("name"); //Gets the id of the task we want to delete
+          	String tasksDoc= tcpClient.deleteTask(id); //Here we get the response from the server to dísplay to the user          
+          	System.out.println("message from server "+tasksDoc); //also priting to the console
+          	out.append(tasksDoc); //writing to the screen
         %>
        
 		</textarea>

@@ -5,6 +5,7 @@
     Author     : rao
 --%>
 
+<%@page import="itu.dk.smds.e2013.common.TcpClient"%>
 <%@page import="itu.dk.smds.e2013.servlets.GetAllTasksServlet"%>
 <%@page import="java.util.logging.Level"%>
 <%@page import="java.util.logging.Logger"%>
@@ -27,21 +28,12 @@
         
         <%
      
-      String idParam=request.getParameter("id");
-      
-            try {
-                InputStream xmlStream = getServletContext().getResourceAsStream("/WEB-INF/task-manager-xml.xml");
-              
-                //This line takes:Tasks by the Id: Get the task information or Xml for a supplied task id.
-                //and passing the next: http://localhost:8080/TaskManagerWeb-01/GetAllTasks.jsp?id=something
-                    String query = "//task[@id='"+idParam+"']";            			
-                
-                Document tasksDoc = TasksJDOMParser.GetTasksByQuery(xmlStream, query);
-                new XMLOutputter().output(tasksDoc, out);
-                
-            } catch (JDOMException ex) {
-                Logger.getLogger(GetAllTasksServlet.class.getName()).log(Level.SEVERE, null, ex);
-            }
+        TcpClient tcpClient = new TcpClient();
+        //This line takes the all xml file
+          String id = request.getParameter("id");        
+          String tasksDoc= tcpClient.getTask(id);          
+          System.out.println("message from server "+tasksDoc);
+          out.append(tasksDoc);
         %>
 		</textarea>
 		
